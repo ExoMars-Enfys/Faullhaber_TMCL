@@ -13,7 +13,7 @@ SGP 77,0,0                //Starts application only when user press start
 //AM1020xx0250
 SAP 179, 0, 1             //Set current range (Vsense), please let the jumpers on the board closed!
 SAP 4,0,683				//Set Motor Velocity to approximate 1mm/s
-SAP 6, 0, 92              //Set current = 80% of 250 mA, please let the jumpers on the board closed!
+SAP 6, 0, 121?              //Set current = 80% of 250 mA, please let the jumpers on the board closed!
 SAP 154, 0, 6             //Set Puls divisor (PD)(please refer to manual for equations and scales)
 SAP 153, 0, 7			  //Set ramp divisor (please refer to manual for equations and scales
 SAP 5, 0, 2047             //Set max acceleration speed 
@@ -21,11 +21,10 @@ SAP 140, 0, 2             //Set microstepping, 0= 1ustep/s, 1= 2usteps/s, 2= 4us
 SAP 7, 0, 0              //Set standby current
 
 // Main Loop
-???p:                  
-	ROL 0,1342      //Move to Position Relative 1000 (number of microsteps)
+loop:               
+	ROL 0,336      //Move to Position Relative 1000 (number of microsteps)
 	WAIT TICKS, 0, 500
 	MST 0
-	ROR 0,1342
+	ROR 0,336
 	WAIT TICKS, 0,500
 	MST 0
-	JA loop            //Infinite Loop
