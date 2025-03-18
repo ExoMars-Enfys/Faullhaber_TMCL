@@ -26,25 +26,17 @@ SGP 79, 0, 0    //set End switch polarity so that unpressed is '1'
 
 // Main Loop
 //Restart:
-//	GAP 11, 0		 //get Left Limit switch [Base]
-//	JC Ze, Reverse
+	GAP 11, 0		 //get Left Limit switch [Base]
+	JC Ze, Parked
 
-//	ROL 0, 436        //Rotate Left [ACW]
-//	JA Restart
-
-// Motor Stop
-Reverse:
-	GAP 10, 0    	 //get Right limit switch status [Outer]
-	JC Ze, Parked	 //if left pressed stop motor
-
-	ROR 0, 436        //Rotate Right [CW]
-	JA Reverse
+	ROL 0, 436        //Rotate Left [ACW]
+	JA Restart
 
 Parked:
-	GAP 11, 0
+	GAP 10, 0
 	JC Ze, StopRot
 
-	ROL 0,436
+	ROR 0,436
 	WAIT TICKS, 0,1790
 	JA StopRot
 StopRot:
